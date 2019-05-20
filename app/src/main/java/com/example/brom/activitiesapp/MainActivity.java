@@ -1,7 +1,9 @@
 package com.example.brom.activitiesapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,9 +33,12 @@ public class MainActivity extends AppCompatActivity {
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
-                String out = "Name: " + mountainNames[pos] + ", Location: " + mountainLocations[pos]
-                        + ", Height: " + mountainHeights[pos] + "m.";
-
+                //create intent and put data in it
+                Intent intent = new Intent(MainActivity.this, MountainDetailsActivity.class);
+                intent.putExtra("mtName", mountainNames[pos]);
+                intent.putExtra("mtLocation", mountainLocations[pos]);
+                intent.putExtra("mtHeight", mountainHeights[pos]);
+                startActivity(intent);
             }
         });
 
